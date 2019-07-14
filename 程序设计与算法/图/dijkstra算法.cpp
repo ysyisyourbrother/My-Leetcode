@@ -41,7 +41,7 @@ string dijkstra(Graph G,int v,int end)//传入图和源点
 			}
 		}
 		found[v]=true;
-		for(int j=0;j<G.count;j++)
+		for(int j=0;j<G.count;j++)// 将新要加入集合中的点加入并更新它的所有邻接点
 		{
 			if(!found[j]&&G.adj[v][j]+distance[v]<distance[j])
 			{
