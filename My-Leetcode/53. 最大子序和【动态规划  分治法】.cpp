@@ -28,8 +28,10 @@ public:
         int mid=(left+right)/2;
         int l=fenzhifa(nums,0,mid-1);//求左半边最大子序和
         int r=fenzhifa(nums,mid+1,right);//求右半边最大子序和
+        
         int t=nums[mid];
         int max_num=nums[mid];
+
         for(int i=mid-1;i>=left;i--)//整合左半部分
         {
             t+=nums[i];

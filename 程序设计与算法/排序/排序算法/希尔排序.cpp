@@ -1,43 +1,47 @@
+#include <vector>
 #include <iostream>
-#include <algorithm>
 using namespace std;
-void insertion_sort_interval(int *arr,int start,int increment,int len)
-{
-	int first_unsorted=start;
-	int current,position;
-	while((first_unsorted+increment)<len)
-	{
-		first_unsorted+=increment;
-		position=first_unsorted;
-		current=arr[first_unsorted];
-		while(position>=start+increment&&arr[position-increment]>current)
-		{
-			swap(arr[position],arr[position-increment]);
-			position-=increment;
-		}
-		arr[position] = current;
-	}
-}
-void shell_sort(int *arr,int len)
-{
-	int increment,start;
-	increment=len;//�����ʼ������Ϊ���鳤��len 
-	do
-	{
-		increment=increment/3+1;//ÿ��������Ϊ���
-		for(start=0;start<increment;start++)
-		{
-			insertion_sort_interval(arr,start,increment,len);
-		}
-	}while(increment>1);
-}
+
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        if(nums.size()<=1) return nums; //如果数组的大小小于等于1 直接返回
+        // 希尔排序
+        int jump = nums.size()/2; // 定义排序增量间隔
+        while(jump) // jump每次变为原来的一半 变为0的时候结束
+        {
+            for(int i = 0;i<jump;i++)
+            {
+                // 对每一组进行插入排序
+                insert_sort(nums, i , jump);
+            }
+            jump/=2;
+        }
+        return nums;
+    }
+    void insert_sort(vector<int> & nums, int cur, int jump)
+    {
+        // 有增量的直接插入排序
+        while(cur<nums.size())
+        {
+            int tmp = nums[cur];
+            int x = cur - jump;
+            while(x>=0 && nums[x]>tmp)
+            {
+                nums[x+jump] = nums[x];
+                x-=jump; 
+            }
+            nums[x+jump] = tmp;
+            cur+= jump;
+        }
+    }
+};
+
 int main()
 {
-	int a[]={0,2,4,3,10000,1,10,7,4,};
-	int len = sizeof(a)/sizeof(int);
-	shell_sort(a,len);
-	for(int i=0;i<len;i++)
-	{
-		cout<<a[i]<<" " ; 
-	}
- } 
+    vector<int> q = {5,2,3,1};
+    Solution test;
+    test.sortArray(q);
+    for(auto i:q)
+        cout<<i<<" ";
+}

@@ -2,22 +2,22 @@
 #include <cmath>
 using namespace std;
 #define left(x) 2*x+1
-#define right(x) 2*x+2//ÒòÎªÊı×éÏÂ±êÊÇ´Ó0¿ªÊ¼µÄ£¬ËùÒÔ¶ÔÓ¦Ã¿¸ö·ÇÊ÷Ò¶½Úµãx,ËûµÄ×óÓÒ½Úµã·Ö±ğÎª2x+1 2x+2
-void MaxHeap(int *a,int i,int high)//¸üĞÂÄ³¸ö½ÚµãÂú×ã×î´ó¶Ñ 
-//aÎªÒªÅÅĞòÊı×é£¬iÎªÒªÅÅĞòµÄ½Úµã£¬highÎªÊı×éÒª±»Î¬»¤µÄ×î´óÏÂ±ê 
+#define right(x) 2*x+2//å› ä¸ºæ•°ç»„ä¸‹æ ‡æ˜¯ä»0å¼€å§‹çš„ï¼Œæ‰€ä»¥å¯¹åº”æ¯ä¸ªéæ ‘å¶èŠ‚ç‚¹x,ä»–çš„å·¦å³èŠ‚ç‚¹åˆ†åˆ«ä¸º2x+1 2x+2
+void MaxHeap(int *a,int i,int high)//æ›´æ–°æŸä¸ªèŠ‚ç‚¹æ»¡è¶³æœ€å¤§å † 
+//aä¸ºè¦æ’åºæ•°ç»„ï¼Œiä¸ºè¦æ’åºçš„èŠ‚ç‚¹ï¼Œhighä¸ºæ•°ç»„è¦è¢«ç»´æŠ¤çš„æœ€å¤§ä¸‹æ ‡ 
 {
 	int l=left(i);
 	int r= right(i);
-	int largest;//ÈıÕß½Ï´ó½ÚµãÏÂ±ê 
+	int largest;//ä¸‰è€…è¾ƒå¤§èŠ‚ç‚¹ä¸‹æ ‡ 
 	int temp;
-	//ÕÒ³ör l ºÍ iÎ»ÖÃµÄ½ÚµãÖµµÄ×î´óÖµ ²¢ºÍiÎ»ÖÃ½»»» 
+	//æ‰¾å‡ºr l å’Œ iä½ç½®çš„èŠ‚ç‚¹å€¼çš„æœ€å¤§å€¼ å¹¶å’Œiä½ç½®äº¤æ¢ 
 	if(l<=high && a[l]>a[i])
 		largest=l; 
 	else  
 		largest = i;
 	if(r<=high&&a[r]>a[largest])
 		largest=r;
-	if(largest!=i)//µ± ×î´óµÄÖµÊÇÔÚÎ»ÖÃ i »òÕß lºÍr¶¼²»´æÔÚÊ± largest=i,´ËÊ±²»½»»»£¬º¯Êı·µ»Ø¡£ 
+	if(largest!=i)//å½“ æœ€å¤§çš„å€¼æ˜¯åœ¨ä½ç½® i æˆ–è€… lå’Œréƒ½ä¸å­˜åœ¨æ—¶ largest=i,æ­¤æ—¶ä¸äº¤æ¢ï¼Œå‡½æ•°è¿”å›ã€‚ 
 	{
 		temp=a[i];
 		a[i]=a[largest];
@@ -26,7 +26,7 @@ void MaxHeap(int *a,int i,int high)//¸üĞÂÄ³¸ö½ÚµãÂú×ã×î´ó¶Ñ
 	}
 	
  } 
-void buildMaxHeap(int *a,int length)//½«Êı×é½¨Á¢³ÉÒ»¸ö×î´ó¶Ñ 
+void buildMaxHeap(int *a,int length)//å°†æ•°ç»„å»ºç«‹æˆä¸€ä¸ªæœ€å¤§å † 
 {
  	for(int i=length/2-1;i>=0;i--)
 	{
@@ -44,7 +44,7 @@ void HeapSort(int *a,int length)
 		// 	cout<<a[i]<<" ";
 		// }
 		// cout<<endl;
-		temp=a[i];//ºÍÊı×é×îºóÒ»¸öÔªËØ½»»»Î»ÖÃ	 
+		temp=a[i];//å’Œæ•°ç»„æœ€åä¸€ä¸ªå…ƒç´ äº¤æ¢ä½ç½®	 
 		a[i]=a[0];
 		a[0]=temp;
 		MaxHeap(a,0,i-1);
